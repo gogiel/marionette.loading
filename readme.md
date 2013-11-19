@@ -34,4 +34,11 @@ Backbone.Marionette.CollectionView.extend({
 });
 ```
 
+### Calling manually
 
+Trigger 'loading' event on your collection or model to force your view to change to loading.
+Trigger 'loaded' event to do opposite.
+
+## Implementation details
+
+Marionette.loading counts all events. If you trigger 'request' or 'loading' event N times it requires trigerring 'sync' or 'loaded' items N times as well.

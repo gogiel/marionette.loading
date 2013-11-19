@@ -4,6 +4,7 @@ _.extend(Marionette.View.prototype, {
     },
     __hideLoading: function (force) {
         --this.__loadingCount;
+        if(this.__loadingCount < 0) this.__loadingCount = 0;
         if (this.__loadingCount == 0 || force) {
             delete this.__showingLoadingView;
             this.__loadingView && this.__loadingView.close();
