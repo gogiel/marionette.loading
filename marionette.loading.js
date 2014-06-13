@@ -17,9 +17,9 @@ _.extend(Marionette.View.prototype, {
         var LoadingView = this.getLoadingView();
         if (LoadingView && !this.__showingLoadingView) {
             this.__showingLoadingView = true;
-            var tempEl = $('<div>');
-            this.$el.html('').append(tempEl);
-            var loadingView = this.__loadingView = new LoadingView(_.extend({el: tempEl}, _.result(this, '__loadingViewAttributes')));
+            var loadingView = this.__loadingView = new LoadingView({ collection: this.collection, model: this.model });
+            this.$el.empty().append(loadingView.$el);
+            
             loadingView.render();
         }
     },
@@ -33,9 +33,6 @@ _.extend(Marionette.View.prototype, {
                 this.listenTo(target, 'loaded', this.__hideLoading, this);
             }
         }, this);
-    },
-    __loadingViewAttributes: function () {
-        return {collection: this.collection, model: this.model}
     },
 
     setupMarionetteLoading: function () {
