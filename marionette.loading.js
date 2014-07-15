@@ -70,3 +70,10 @@ Marionette.LoadingCompositeView = Marionette.CompositeView.extend({
         this.setupMarionetteLoading();
     }
 });
+
+Marionette.LoadingLayout = Marionette.Layout.extend({
+    constructor: function () {
+        Marionette.Layout.prototype.constructor.apply(this, arguments);
+        this.setupMarionetteLoading();
+    }
+});
