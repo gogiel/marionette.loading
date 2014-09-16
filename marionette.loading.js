@@ -37,10 +37,10 @@ _.extend(Marionette.View.prototype, {
 
     setupMarionetteLoading: function () {
         this.__loadingEvents();
-        if (this.renderItemView) {
-            this.renderItemView = function () {
+        if (this.addItemView) {
+            this.addItemView = function () {
                 if (!this.__showingLoadingView) { // add is triggered before sync. if so do not render
-                    Marionette.CompositeView.prototype.renderItemView.apply(this, arguments);
+                    Marionette.CompositeView.prototype.addItemView.apply(this, arguments);
                 }
             }
         }
