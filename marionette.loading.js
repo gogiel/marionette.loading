@@ -7,7 +7,7 @@ _.extend(Marionette.View.prototype, {
         if(this.__loadingCount < 0) this.__loadingCount = 0;
         if (this.__loadingCount == 0 || force) {
             delete this.__showingLoadingView;
-            this.__loadingView && this.__loadingView.close();
+            this.__loadingView && this.__loadingView.destroy();
             this.render();
         }
     },
@@ -19,7 +19,7 @@ _.extend(Marionette.View.prototype, {
             this.__showingLoadingView = true;
             var loadingView = this.__loadingView = new LoadingView({ collection: this.collection, model: this.model });
             this.$el.empty().append(loadingView.$el);
-            
+
             loadingView.render();
         }
     },
@@ -68,7 +68,7 @@ Marionette.LoadingCompositeView = Marionette.CompositeView.extend({
     }
 });
 
-Marionette.LoadingLayout = Marionette.Layout.extend({
+Marionette.LoadingLayout = Marionette.LayoutView.extend({
     constructor: function () {
         Marionette.Layout.prototype.constructor.apply(this, arguments);
         this.setupMarionetteLoading();
